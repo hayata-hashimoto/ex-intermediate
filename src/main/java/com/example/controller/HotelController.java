@@ -24,13 +24,15 @@ public class HotelController {
  	
  	@RequestMapping("/hotels")
  	public String search(Integer price,Model model) {
+ 		List<Hotel> hotelList = null;
  		if(price == null) {
- 			List<Hotel> hotelList = service.findAll();
- 	 		model.addAttribute("hotel",hotelList);
+ 			hotelList = service.findAll();
+ 	 		
  		}else {
- 	 		List<Hotel> hotel = service.findByPrice(price);
- 			model.addAttribute("hotel",hotel);
+ 	 		hotelList = service.findByPrice(price);
+ 			
  		}
+ 		model.addAttribute("hotel",hotelList);
  		return "ex02";
  	}
 }
